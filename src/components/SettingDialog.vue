@@ -41,6 +41,7 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
                       GPU 模式需要有 GPU 硬件设备。Linux 仅支持 NVIDIA&trade;
                       GPU。</q-tooltip
@@ -79,6 +80,7 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
                       添加一个文本字段时、将保留当前参数如语音速度等
                     </q-tooltip>
@@ -101,6 +103,7 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
                       追踪播放位置、选择自动滚动模式
                     </q-tooltip>
@@ -133,6 +136,7 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
                       追踪播放位置、自动滚动。
                       {{ `「${obj.label}」模式  ${obj.desc}` }}
@@ -150,6 +154,7 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
                       粘贴文本时更改分割行为
                     </q-tooltip>
@@ -186,6 +191,7 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
                       根据标点符号和换行符拆分文本。
                     </q-tooltip>
@@ -197,6 +203,7 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
                       仅根据换行符分割文本。
                     </q-tooltip>
@@ -208,6 +215,7 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
                       不分割。
                     </q-tooltip>
@@ -230,6 +238,7 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
                       选择一个字符编码
                     </q-tooltip>
@@ -263,6 +272,7 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
                       语音文件导出到设定的文件夹中
                     </q-tooltip>
@@ -324,6 +334,7 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
                       自定义导出文件名样式
                     </q-tooltip>
@@ -353,6 +364,7 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
                       文件保存为编号而不被覆写
                     </q-tooltip>
@@ -377,6 +389,7 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
                       导出文本为txt文件
                     </q-tooltip>
@@ -402,6 +415,7 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
                       导出lab文件同步口型
                     </q-tooltip>
@@ -432,6 +446,7 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
                       将语音数据从单声道转换为双声道并执行播放/保存
                     </q-tooltip>
@@ -456,6 +471,7 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
                       更改语音播放设备并执行播放
                     </q-tooltip>
@@ -481,6 +497,7 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
                       播放/保存过程中更改语音采样率（提高采样率并不会提升语音质量。）
                     </q-tooltip>
@@ -517,6 +534,7 @@
                     self="center right"
                     transition-show="jump-left"
                     transition-hide="jump-right"
+                    class="text-h6"
                   >
                     更改软件主题外观
                   </q-tooltip>
@@ -543,6 +561,7 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
                       启用预设功能
                     </q-tooltip>
@@ -567,6 +586,7 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
                       自动提高结尾问句中的高音
                     </q-tooltip>
@@ -599,6 +619,7 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
                       上传各个GUI界面的使用率等数据用来改善VOICEVOX。不会上传文本数据/语音数据。
                     </q-tooltip>
@@ -818,7 +839,8 @@ export default defineComponent({
       if (key === "outputSamplingRate" && data !== 24000) {
         $q.dialog({
           title: "更改输出采样率",
-          message: "更改输出采样率并不会改变音质。另外、语音生成过程可能额外需要一些时间。<br />是否更改？",
+          message:
+            "更改输出采样率并不会改变音质。另外、语音生成过程可能额外需要一些时间。<br />是否更改？",
           html: true,
           persistent: true,
           ok: {
