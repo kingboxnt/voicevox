@@ -42,8 +42,7 @@
       <q-page-container>
         <q-page>
           <p class="text-body1 q-mb-lg">
-            为了能够正常启动 VOICEVOX、
-            请同意以下使用条款。
+            为了能够正常启动 VOICEVOX、请同意以下使用条款。
           </p>
           <q-card flat bordered>
             <q-card-section>

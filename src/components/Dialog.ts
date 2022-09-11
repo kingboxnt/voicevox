@@ -142,8 +142,7 @@ export async function generateAndConnectAndSaveAudioWithDialog({
       }
       break;
     case "ENGINE_ERROR":
-      msg =
-        "由于引擎错误而失败。 请尝试重新启动引擎。";
+      msg = "由于引擎错误而失败。 请尝试重新启动引擎。";
       break;
   }
 

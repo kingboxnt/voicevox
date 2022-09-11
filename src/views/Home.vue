@@ -269,8 +269,7 @@ export default defineComponent({
         if (
           !event.isComposing &&
           !uiLocked.value &&
-          parseCombo(event) ==
-            hotkeySettingsMap.value.get("从文本栏移除焦点")
+          parseCombo(event) == hotkeySettingsMap.value.get("从文本栏移除焦点")
         ) {
           if (document.activeElement instanceof HTMLInputElement) {
             document.activeElement.blur();
