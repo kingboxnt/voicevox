@@ -250,7 +250,7 @@
     </div>
     <div class="q-px-md">
       <span class="text-body1 q-mb-xs"
-        >起点静音
+        >开始静音
         {{ prePhonemeLengthSlider.state.currentValue.value?.toFixed(2) }}</span
       >
       <q-slider
@@ -273,7 +273,7 @@
     </div>
     <div class="q-px-md">
       <span class="text-body1 q-mb-xs"
-        >终点静音
+        >结束静音
         {{ postPhonemeLengthSlider.state.currentValue.value?.toFixed(2) }}</span
       >
       <q-slider
