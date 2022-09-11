@@ -148,7 +148,7 @@
 ; 分割ファイルのうちの1つを検証する
 ; @param Index 7z.N の N
 ; @param FilePath ファイルへのパス
-; @return Result "OK"、"No entry"、"Failed to get file size"、"Filesize mismatch"、"Hash mismatch" のどれか
+; @return Result "OK"、"No entry"、"Failed to get file size"、"Filesize mismatch"、"哈希值不匹配" のどれか
 !define verifyPartedFile "!insertmacro verifyPartedFile"
 !macro verifyPartedFile Result Index FilePath
   !define UniqueID ${__LINE__}
@@ -186,7 +186,7 @@
   ; ハッシュ値を検証
   ${verifyFile} $3 $1 "MD5-128" $2
   ${If} $3 != "OK"
-    StrCpy $0 "Hash mismatch"
+    StrCpy $0 "哈希值不匹配"
     Goto verifyPartedFile_finish${UniqueID}
   ${EndIf}
 
@@ -205,7 +205,7 @@ verifyPartedFile_finish${UniqueID}:
 ; ${downloadFile} Result ResultFilePath Index
 ; 分割されたファイルを1つダウンロードする
 ; @param Index 7z.N の N
-; @return Result inetc::get の戻り値, "Hash mismatch", "No entry", "Failed to rename", "Failed to get file size" のどれか
+; @return Result inetc::get の戻り値, "哈希值不匹配", "No entry", "Failed to rename", "Failed to get file size" のどれか
 ; @return ResultFilePath ダウンロードしたファイルへのフルパス
 !define downloadFile "!insertmacro downloadFile"
 !macro downloadFile Result ResultFilePath Index
@@ -257,11 +257,11 @@ verifyPartedFile_finish${UniqueID}:
         StrCpy $0 "Failed to rename"
       ${EndIf}
     ${ElseIf} $0 == "Filesize mismatch"
-    ${OrIf} $0 == "Hash mismatch"
+    ${OrIf} $0 == "哈希值不匹配"
       ; ハッシュ値が一致しなかった
       ; よくわからないファイルなので削除する
       Delete "$4"
-      StrCpy $0 "Hash mismatch"
+      StrCpy $0 "哈希值不匹配"
     ${ElseIf} $0 == "No entry"
       ; ini ファイルに該当ファイルを検証するためのデータが存在しなかった
       ; 通常の流れでは発生しない
@@ -295,7 +295,7 @@ verifyPartedFile_finish${UniqueID}:
 
 ; ${verifyArchive} Result
 ; 7z ファイルが正しいハッシュ値を持っているか調べる
-; @return Result "OK"、"File not found"、"Hash mismatch" のどれか
+; @return Result "OK"、"未找到文件"、"哈希值不匹配" のどれか
 !define verifyArchive "!insertmacro verifyArchive"
 !macro verifyArchive Result
   Push $0 ; Stack $0
@@ -303,7 +303,7 @@ verifyPartedFile_finish${UniqueID}:
 
   StrCpy $0 "$EXEDIR\$archiveName"
   ${IfNot} ${FileExists} $0
-    StrCpy $0 "File not found"
+    StrCpy $0 "未找到文件"
   ${Else}
     Banner::show /set 76 "$(^Name) 安装" "正在验证文件..."
     ${verifyFile} $0 $0 "SHA2-512" $archiveHash
@@ -311,7 +311,7 @@ verifyPartedFile_finish${UniqueID}:
     ${If} $0 == "OK"
       StrCpy $0 "OK"
     ${Else}
-      StrCpy $0 "Hash mismatch"
+      StrCpy $0 "哈希值不匹配"
     ${EndIf}
   ${EndIf}
 
@@ -352,7 +352,7 @@ verifyPartedFile_finish${UniqueID}:
         ; 正しいファイルだった
         ${Continue}
       ${ElseIf} $0 == "Filesize mismatch"
-      ${OrIf} $0 == "Hash mismatch"
+      ${OrIf} $0 == "哈希值不匹配"
         ; おかしいので削除しておく
         Delete "$3.$1"
       ${ElseIf} $0 == "No entry"
@@ -404,7 +404,7 @@ verifyPartedFile_finish${UniqueID}:
 ; 分割されたファイルを連結し、正しいハッシュ値になるか検証する
 ; ある程度時間がかかるため処理のため進行中は Banner を表示する
 ; 成功しなかった場合はファイルは削除される
-; @return Result "OK"、"Failed to concatenate file"、"Failed to rename"、"Hash mismatch" のどれか
+; @return Result "OK"、"Failed to concatenate file"、"Failed to rename"、"哈希值不匹配" のどれか
 !define concatenateAndVerify "!insertmacro concatenateAndVerify"
 !macro concatenateAndVerify Result
   Push $0 ; Stack $0
@@ -452,7 +452,7 @@ verifyPartedFile_finish${UniqueID}:
     ; ハッシュ値が一致しなかった
     ; 何かがおかしいファイルなので削除する
     Delete "$2"
-    StrCpy $0 "Hash mismatch"
+    StrCpy $0 "哈希值不匹配"
     Goto concatenateAndVerify_finish
   ${EndIf}
 
@@ -489,8 +489,8 @@ verifyPartedFile_finish${UniqueID}:
 
     StrCpy $additionalProcess "None"
 
-  ${ElseIf} $0 == "File not found"
-  ${OrIf} $0 == "Hash mismatch"
+  ${ElseIf} $0 == "未找到文件"
+  ${OrIf} $0 == "哈希值不匹配"
 
     ; ファイルの分割数やハッシュ値などが記述された ini ファイルをまずダウンロードする
     StrCpy $iniFileName "$PLUGINSDIR\files.ini"
@@ -575,7 +575,7 @@ Function welcomePageShow
 
     ; ダウンロードを行うのでその旨を表示する
     ${bytesToHumanReadable} $0 $downloadSize
-    StrCpy $2 "$2$\r$\n$\r$\n安装总计 $0 的文件进行下载。"
+    StrCpy $2 "$2$\r$\n$\r$\n总计需要下载 $0 安装文件。"
 
     ; ダウンロードと結合に必要な空き容量
     System::Int64Op $archiveSize + $downloadSize
@@ -598,7 +598,7 @@ Function welcomePageShow
     StrCpy $2 "$2$\r$\n安装程序所在驱动器至少有 $0 以上点空闲空间。$\r$\n（当前$3硬盘空间: $1）"
   ${EndIf}
 
-  StrCpy $2 "$2$\r$\n$\r$\n続けるには [次へ] をクリックしてください。"
+  StrCpy $2 "$2$\r$\n$\r$\n点击 [下一步] 继续。"
 
   ; テキストを更新
   SendMessage $mui.WelcomePage.Text ${WM_SETTEXT} 0 "STR:$2"
@@ -641,7 +641,7 @@ Function welcomePageLeave
         ; すぐに再試行しても望みが薄いので失敗したことを伝えつつ終わる
         MessageBox MB_OK|MB_ICONSTOP "文件下载失败。$\r$\n请稍后重试。$\r$\n$\r$\n错误: $0"
         ${myQuit}
-      ${ElseIf} $0 == "Hash mismatch"
+      ${ElseIf} $0 == "哈希值不匹配"
         MessageBox MB_OK|MB_ICONSTOP "下载文件异常。$\r$\n请重新下载安装程序。"
         ${myQuit}
       ${ElseIf} $0 == "Failed to rename"
@@ -672,7 +672,7 @@ Function welcomePageLeave
   ${ElseIf} $0 == "Failed to rename"
     MessageBox MB_RETRYCANCEL|MB_ICONEXCLAMATION "重命名文件失败而无法继续安装。$\r$\n如果有打开其他应用程序、请关闭并重试。$\r$\n是否重试？" IDRETRY welcomePageLeave_concatenate
     ${myQuit}
-  ${ElseIf} $0 == "Hash mismatch"
+  ${ElseIf} $0 == "哈希值不匹配"
     ; 結合する前のハッシュチェックは通ったのに統合後におかしくなった
     ; ビルド時に作成された分割ファイルではないものを受信した場合に発生するため、提供側の問題の可能性が高い
     MessageBox MB_OK|MB_ICONSTOP "检测文件异常而中止安装。$\r$\n请重新下载安装程序。"
