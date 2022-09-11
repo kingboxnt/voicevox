@@ -4,9 +4,9 @@
       <div class="side">
         <div class="detail-selector">
           <q-tabs dense vertical class="text-display" v-model="selectedDetail">
-            <q-tab name="accent" label="ｱｸｾﾝﾄ" />
-            <q-tab name="pitch" label="ｲﾝﾄﾈｰｼｮﾝ" />
-            <q-tab name="length" label="長さ" />
+            <q-tab name="accent" label="口音" />
+            <q-tab name="pitch" label="音调" />
+            <q-tab name="length" label="长度" />
           </q-tabs>
         </div>
         <div class="play-button-wrapper">
@@ -39,11 +39,11 @@
           class="tip-tweakable-slider-by-scroll"
         >
           <p>
-            マウスホイールを使って<br />
-            スライダーを微調整できます。
+            使用鼠标滚轮<br />
+            滚动进行细微调整。
           </p>
-          ホイール: ±0.1<br />
-          Ctrl + ホイール: ±0.01
+          滚轮: ±0.1<br />
+          Ctrl + 滚轮: ±0.01
         </tip>
         <div
           v-for="(accentPhrase, accentPhraseIndex) in accentPhrases"
@@ -277,7 +277,7 @@ export default defineComponent({
 
     const hotkeyMap = new Map<HotkeyAction, () => HotkeyReturnType>([
       [
-        "再生/停止",
+        "播放/停止",
         () => {
           if (!nowPlaying.value && !nowGenerating.value && !uiLocked.value) {
             play();
@@ -287,25 +287,25 @@ export default defineComponent({
         },
       ],
       [
-        "ｱｸｾﾝﾄ欄を表示",
+        "显示口音栏",
         () => {
           selectedDetail.value = "accent";
         },
       ],
       [
-        "ｲﾝﾄﾈｰｼｮﾝ欄を表示",
+        "显示音调栏",
         () => {
           selectedDetail.value = "pitch";
         },
       ],
       [
-        "長さ欄を表示",
+        "显示长度栏",
         () => {
           selectedDetail.value = "length";
         },
       ],
       [
-        "全体のイントネーションをリセット",
+        "重置全部音调",
         () => {
           if (!uiLocked.value && store.getters.ACTIVE_AUDIO_KEY) {
             store.dispatch("COMMAND_RESET_MORA_PITCH_AND_LENGTH", {
@@ -315,7 +315,7 @@ export default defineComponent({
         },
       ],
       [
-        "選択中のアクセント句のイントネーションをリセット",
+        "重置所选口音的音调",
         () => {
           if (
             !uiLocked.value &&
@@ -459,10 +459,10 @@ export default defineComponent({
         });
       } catch (e) {
         $q.dialog({
-          title: "再生に失敗しました",
-          message: "エンジンの再起動をお試しください。",
+          title: "播放失败",
+          message: "尝试重新启动引擎。",
           ok: {
-            label: "閉じる",
+            label: "关闭",
             flat: true,
             textColor: "display",
           },

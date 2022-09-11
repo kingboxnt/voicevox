@@ -105,8 +105,8 @@ export default defineComponent({
 
     const deletePreset = (key: string) => {
       $q.dialog({
-        title: "プリセット削除の確認",
-        message: `プリセット "${presetItems.value[key].name}" を削除してもよろしいですか？`,
+        title: "确认删除预设",
+        message: `是否删除 "${presetItems.value[key].name}" 预设？`,
         cancel: true,
       }).onOk(async () => {
         await store.dispatch("DELETE_PRESET", {

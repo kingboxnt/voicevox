@@ -61,7 +61,7 @@ export default defineComponent({
     const undoRedoHotkeyMap = new Map<HotkeyAction, () => HotkeyReturnType>([
       // undo
       [
-        "元に戻す",
+        "恢复",
         () => {
           if (!uiLocked.value && canUndo.value) {
             undo();
@@ -71,7 +71,7 @@ export default defineComponent({
       ],
       // redo
       [
-        "やり直す",
+        "重做",
         () => {
           if (!uiLocked.value && canRedo.value) {
             redo();
@@ -85,7 +85,7 @@ export default defineComponent({
     const hotkeyMap = new Map<HotkeyAction, () => HotkeyReturnType>([
       // play/stop continuously
       [
-        "連続再生/停止",
+        "连续播放/停止",
         () => {
           if (!uiLocked.value) {
             if (nowPlayingContinuously.value) {
@@ -111,10 +111,10 @@ export default defineComponent({
         await store.dispatch("PLAY_CONTINUOUSLY_AUDIO");
       } catch {
         $q.dialog({
-          title: "再生に失敗しました",
-          message: "エンジンの再起動をお試しください。",
+          title: "播放失败",
+          message: "尝试重新启动引擎。",
           ok: {
-            label: "閉じる",
+            label: "关闭",
             flat: true,
             textColor: "display",
           },
