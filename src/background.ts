@@ -197,87 +197,87 @@ function fetchEngineInfos(): EngineInfo[] {
 
 const defaultHotkeySettings: HotkeySetting[] = [
   {
-    action: "导出语音",
+    action: "音声書き出し",
     combination: !isMac ? "Ctrl E" : "Meta E",
   },
   {
-    action: "导出一个",
+    action: "一つだけ書き出し",
     combination: "E",
   },
   {
-    action: "连接语音并导出",
+    action: "音声を繋げて書き出し",
     combination: "",
   },
   {
-    action: "播放/停止",
+    action: "再生/停止",
     combination: "Space",
   },
   {
-    action: "连续播放/停止",
+    action: "連続再生/停止",
     combination: "Shift Space",
   },
   {
-    action: "显示口音栏",
+    action: "ｱｸｾﾝﾄ欄を表示",
     combination: "1",
   },
   {
-    action: "显示音调栏",
+    action: "ｲﾝﾄﾈｰｼｮﾝ欄を表示",
     combination: "2",
   },
   {
-    action: "显示长度栏",
+    action: "長さ欄を表示",
     combination: "3",
   },
   {
-    action: "添加文本栏",
+    action: "テキスト欄を追加",
     combination: "Shift Enter",
   },
   {
-    action: "删除文本栏",
+    action: "テキスト欄を削除",
     combination: "Shift Delete",
   },
   {
-    action: "从文本栏移除焦点",
+    action: "テキスト欄からフォーカスを外す",
     combination: "Escape",
   },
   {
-    action: "将焦点返回文本栏",
+    action: "テキスト欄にフォーカスを戻す",
     combination: "Enter",
   },
   {
-    action: "恢复",
+    action: "元に戻す",
     combination: !isMac ? "Ctrl Z" : "Meta Z",
   },
   {
-    action: "重做",
+    action: "やり直す",
     combination: !isMac ? "Ctrl Y" : "Shift Meta Z",
   },
   {
-    action: "新建工程",
+    action: "新規プロジェクト",
     combination: !isMac ? "Ctrl N" : "Meta N",
   },
   {
-    action: "工程另存为",
+    action: "プロジェクトを名前を付けて保存",
     combination: !isMac ? "Ctrl Shift S" : "Shift Meta S",
   },
   {
-    action: "覆盖工程",
+    action: "プロジェクトを上書き保存",
     combination: !isMac ? "Ctrl S" : "Meta S",
   },
   {
-    action: "加载工程",
+    action: "プロジェクト読み込み",
     combination: !isMac ? "Ctrl O" : "Meta O",
   },
   {
-    action: "加载文本",
+    action: "テキスト読み込む",
     combination: "",
   },
   {
-    action: "重置全部音调",
+    action: "全体のイントネーションをリセット",
     combination: !isMac ? "Ctrl G" : "Meta G",
   },
   {
-    action: "重置所选口音的音调",
+    action: "選択中のアクセント句のイントネーションをリセット",
     combination: "R",
   },
 ];
@@ -538,9 +538,12 @@ async function runEngine(engineId: string) {
     store.set("useGpu", hasGpu);
 
     dialog.showMessageBox(win, {
-      message: `语音合成引擎${hasGpu ? "GPU" : "CPU"}模式已启动`,
-      detail: "引擎启动模式可以从菜单栏的「引擎」菜单中更改。",
-      title: "引擎启动模式",
+      message: `音声合成エンジンを${
+        hasGpu ? "GPU" : "CPU"
+      }モードで起動しました`,
+      detail:
+        "エンジンの起動モードは、画面上部の「エンジン」メニューから変更できます。",
+      title: "エンジンの起動モード",
       type: "info",
     });
   }
@@ -583,8 +586,8 @@ async function runEngine(engineId: string) {
     if (!engineProcessContainer.willQuitEngine) {
       ipcMainSend(win, "DETECTED_ENGINE_ERROR", { engineId });
       dialog.showErrorBox(
-        "语音合成引擎出错",
-        "语音合成引擎已异常停止。请重新启动引擎。"
+        "音声合成エンジンエラー",
+        "音声合成エンジンが異常終了しました。エンジンを再起動してください。"
       );
     }
   });
@@ -1138,7 +1141,7 @@ ipcMainHandle("ENGINE_INFOS", () => {
 
 /**
  * エンジンを再起動する。
- * 引擎启动开始时解决、启动失败时拒绝。
+ * エンジンの起動が開始したらresolve、起動が失敗したらreject。
  */
 ipcMainHandle("RESTART_ENGINE_ALL", async () => {
   await restartEngineAll();

@@ -10,8 +10,10 @@
       <q-header class="q-py-sm">
         <q-toolbar>
           <div class="column">
-            <q-toolbar-title class="text-display lang=zh-hans">{{
-              hasNewCharacter ? "角色介绍" : "设置 / 角色排序・试听"
+            <q-toolbar-title class="text-display">{{
+              hasNewCharacter
+                ? "追加キャラクターの紹介"
+                : "設定 / キャラクター並び替え・試聴"
             }}</q-toolbar-title>
           </div>
 
@@ -20,7 +22,7 @@
           <div class="row items-center no-wrap">
             <q-btn
               unelevated
-              label="完成"
+              label="完了"
               color="toolbar-button"
               text-color="toolbar-button-display"
               class="text-no-wrap"
@@ -48,7 +50,7 @@
       <q-page-container>
         <q-page class="main">
           <div class="character-items-container">
-            <span class="text-h6 q-py-md">语音样本列表</span>
+            <span class="text-h6 q-py-md">サンプルボイス一覧</span>
             <div>
               <q-item
                 v-for="speakerUuid of sampleCharacterOrder"
@@ -156,7 +158,7 @@
 
           <div class="character-order-container">
             <div class="text-subtitle1 text-weight-bold text-center q-py-md">
-              角色排序
+              キャラクター並び替え
             </div>
             <draggable
               class="character-order q-px-sm"

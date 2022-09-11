@@ -46,21 +46,22 @@ export function buildProjectFileName(state: State, extension?: string): string {
 }
 
 export const replaceTagIdToTagString = {
-  index: "编号",
-  characterName: "角色",
-  styleName: "风格",
-  text: "文本",
-  date: "日期",
+  index: "連番",
+  characterName: "キャラ",
+  styleName: "スタイル",
+  text: "テキスト",
+  date: "日付",
 };
 const replaceTagStringToTagId: { [tagString: string]: string } = Object.entries(
   replaceTagIdToTagString
 ).reduce((prev, [k, v]) => ({ ...prev, [v]: k }), {});
 
-export const DEFAULT_FILE_NAME_TEMPLATE = "$编号$_$角色$（$风格$）_$文本$.wav";
+export const DEFAULT_FILE_NAME_TEMPLATE =
+  "$連番$_$キャラ$（$スタイル$）_$テキスト$.wav";
 const DEFAULT_FILE_NAME_VARIABLES = {
   index: 0,
   characterName: "四国めたん",
-  text: "文本文本文本",
+  text: "テキストテキストテキスト",
   styleName: "ノーマル",
   date: currentDateString(),
 };
@@ -123,15 +124,15 @@ export function buildFileNameFromRawData(
 
 export const getToolbarButtonName = (tag: ToolbarButtonTagType): string => {
   const tag2NameObj: Record<ToolbarButtonTagType, string> = {
-    PLAY_CONTINUOUSLY: "连续播放",
+    PLAY_CONTINUOUSLY: "連続再生",
     STOP: "停止",
-    EXPORT_AUDIO_ONE: "导出一个",
-    EXPORT_AUDIO_ALL: "导出全部",
-    EXPORT_AUDIO_CONNECT_ALL: "连接语音并导出",
-    SAVE_PROJECT: "保存工程",
-    UNDO: "恢复",
-    REDO: "重做",
-    IMPORT_TEXT: "加载文本",
+    EXPORT_AUDIO_ONE: "１つ書き出し",
+    EXPORT_AUDIO_ALL: "全部書き出し",
+    EXPORT_AUDIO_CONNECT_ALL: "音声を繋げて書き出し",
+    SAVE_PROJECT: "プロジェクト保存",
+    UNDO: "元に戻す",
+    REDO: "やり直す",
+    IMPORT_TEXT: "テキスト読み込み",
     EMPTY: "空白",
   };
   return tag2NameObj[tag];

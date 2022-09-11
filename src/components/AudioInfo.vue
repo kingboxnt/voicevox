@@ -108,8 +108,13 @@
             </q-card-section>
 
             <q-card-actions align="right">
-              <q-btn flat label="取消" @click="closeAllDialog" v-close-popup />
-              <q-btn flat type="submit" label="确定" />
+              <q-btn
+                flat
+                label="キャンセル"
+                @click="closeAllDialog"
+                v-close-popup
+              />
+              <q-btn flat type="submit" label="確定" />
             </q-card-actions>
           </q-form>
         </q-card>
@@ -149,7 +154,7 @@
                 <q-item-section avatar>
                   <q-avatar icon="arrow_forward" text-color="blue" />
                 </q-item-section>
-                <q-item-section>取消</q-item-section>
+                <q-item-section>キャンセル</q-item-section>
               </q-item>
             </q-list>
           </q-card-section>
@@ -161,7 +166,7 @@
 
     <div class="q-mx-md">
       <span class="text-body1 q-mb-xs"
-        >语速 {{ speedScaleSlider.state.currentValue.value?.toFixed(2) }}</span
+        >話速 {{ speedScaleSlider.state.currentValue.value?.toFixed(2) }}</span
       >
       <q-slider
         dense
@@ -183,7 +188,7 @@
     </div>
     <div class="q-px-md">
       <span class="text-body1 q-mb-xs"
-        >高音 {{ pitchScaleSlider.state.currentValue.value?.toFixed(2) }}</span
+        >音高 {{ pitchScaleSlider.state.currentValue.value?.toFixed(2) }}</span
       >
       <q-slider
         dense
@@ -205,7 +210,7 @@
     </div>
     <div class="q-px-md">
       <span class="text-body1 q-mb-xs"
-        >语调
+        >抑揚
         {{ intonationScaleSlider.state.currentValue.value?.toFixed(2) }}</span
       >
       <q-slider
@@ -250,7 +255,7 @@
     </div>
     <div class="q-px-md">
       <span class="text-body1 q-mb-xs"
-        >起点静音
+        >開始無音
         {{ prePhonemeLengthSlider.state.currentValue.value?.toFixed(2) }}</span
       >
       <q-slider
@@ -273,7 +278,7 @@
     </div>
     <div class="q-px-md">
       <span class="text-body1 q-mb-xs"
-        >终点静音
+        >終了無音
         {{ postPhonemeLengthSlider.state.currentValue.value?.toFixed(2) }}</span
       >
       <q-slider

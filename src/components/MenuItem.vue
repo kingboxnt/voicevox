@@ -101,8 +101,8 @@ export default defineComponent({
       if (hotkey === undefined) {
         return "";
       } else {
-        // 由于Mac上的Meta键是Cmd键、Meta的显示名称被Cmd取代
-        // 在Windows PC上 Meta 键是 Windows 键、但由于不经常使用所以暂时仅支持 Mac
+        // Mac の Meta キーは Cmd キーであるため、Meta の表示名を Cmd に置換する
+        // Windows PC では Meta キーは Windows キーだが、使用頻度低と考えられるため暫定的に Mac 対応のみを考慮している
         return hotkey.replaceAll(" ", "+").replaceAll("Meta", "Cmd");
       }
     };

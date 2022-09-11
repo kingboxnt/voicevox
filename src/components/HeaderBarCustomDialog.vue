@@ -10,8 +10,8 @@
       <q-page-container class="root">
         <q-header class="q-py-sm">
           <q-toolbar>
-            <q-toolbar-title class="text-display lang=zh-hans"
-              >自定义工具栏</q-toolbar-title
+            <q-toolbar-title class="text-display"
+              >ツールバーのカスタマイズ</q-toolbar-title
             >
             <q-space />
             <q-btn
@@ -21,7 +21,7 @@
               class="text-no-wrap text-bold q-mr-sm"
               @click="applyDefaultSetting"
               :disable="isDefault"
-              >重置默认值</q-btn
+              >デフォルトに戻す</q-btn
             >
             <q-btn
               unelevated
@@ -74,7 +74,7 @@
             </q-toolbar>
             <q-card-actions class="no-wrap text-no-wrap">
               <div v-if="selectedButton !== undefined" class="text-h5">
-                点击「{{ getToolbarButtonName(selectedButton) }}」按钮
+                「{{ getToolbarButtonName(selectedButton) }}」を選択中
               </div>
               <q-space />
               <q-btn
@@ -83,7 +83,7 @@
                 class="text-no-wrap text-bold q-mr-sm"
                 :disable="!leftShiftable"
                 @click="moveLeftButton"
-                >向左端移动</q-btn
+                >左に動かす</q-btn
               >
               <q-btn
                 outline
@@ -91,7 +91,7 @@
                 class="text-no-wrap text-bold q-mr-sm"
                 :disable="!rightShiftable"
                 @click="moveRightButton"
-                >向右端移动</q-btn
+                >右に動かす</q-btn
               >
               <q-btn
                 outline
@@ -99,11 +99,11 @@
                 class="text-no-wrap text-bold q-mr-sm"
                 :disable="!removable"
                 @click="removeButton"
-                >删除按钮</q-btn
+                >削除する</q-btn
               >
             </q-card-actions>
             <q-card-actions>
-              <div class="text-h5">表示已选择该按钮</div>
+              <div class="text-h5">表示するボタンの選択</div>
             </q-card-actions>
             <q-card-actions class="no-padding">
               <q-list class="usable-button-list bg-surface">
@@ -173,16 +173,21 @@ export default defineComponent({
     });
 
     const usableButtonsDesc: Record<ToolbarButtonTagType, string> = {
-      PLAY_CONTINUOUSLY: "朗读选择的文本之后的全部文本。",
-      STOP: "文本朗读时将被停止。",
-      EXPORT_AUDIO_ONE: "选择朗读文本并导出为语音文件。",
-      EXPORT_AUDIO_ALL: "所有导入的朗读文本导出为一个语音文件。",
-      EXPORT_AUDIO_CONNECT_ALL: "所有导入的朗读文本连接导出为一个语音文件。",
-      SAVE_PROJECT: "覆盖保存工程。",
-      UNDO: "恢复上一次的操作。",
-      REDO: "重做未完成的操作。",
-      IMPORT_TEXT: "加载文本文件(.txt)。",
-      EMPTY: "这不是一个按钮。是用来调整布局的。实际未显示。",
+      PLAY_CONTINUOUSLY:
+        "選択されているテキスト以降のすべてのテキストを読み上げます。",
+      STOP: "テキストが読み上げられているときに、それを止めます。",
+      EXPORT_AUDIO_ONE:
+        "選択されているテキストの読み上げを音声ファイルに書き出します。",
+      EXPORT_AUDIO_ALL:
+        "入力されているすべてのテキストの読み上げを音声ファイルに書き出します。",
+      EXPORT_AUDIO_CONNECT_ALL:
+        "入力されているすべてのテキストの読み上げを一つの音声ファイルに繋げて書き出します。",
+      SAVE_PROJECT: "プロジェクトを上書き保存します。",
+      UNDO: "操作を一つ戻します。",
+      REDO: "元に戻した操作をやり直します。",
+      IMPORT_TEXT: "テキストファイル(.txt)を読み込みます。",
+      EMPTY:
+        "これはボタンではありません。レイアウトの調整に使います。また、実際には表示されません。",
     };
 
     const headerBarCustomDialogOpenComputed = computed({
@@ -255,16 +260,16 @@ export default defineComponent({
 
     const applyDefaultSetting = () => {
       $q.dialog({
-        title: "工具栏重置为默认值",
-        message: "工具栏重置为默认值。<br/>是否确定？",
+        title: "ツールバーをデフォルトに戻します",
+        message: "ツールバーをデフォルトに戻します。<br/>よろしいですか？",
         html: true,
         ok: {
-          label: "是",
+          label: "はい",
           flat: true,
           textColor: "display",
         },
         cancel: {
-          label: "否",
+          label: "いいえ",
           flat: true,
           textColor: "display",
         },
@@ -282,17 +287,18 @@ export default defineComponent({
     const finishOrNotDialog = () => {
       if (isChanged.value) {
         $q.dialog({
-          title: "是否退出自定义？",
-          message: "如果现在退出、自定义将被丢弃并重置。",
+          title: "カスタマイズを終了しますか？",
+          message:
+            "このまま終了すると、カスタマイズは破棄されてリセットされます。",
           persistent: true,
           focus: "cancel",
           ok: {
-            label: "退出",
+            label: "終了",
             flat: true,
             textColor: "display",
           },
           cancel: {
-            label: "取消",
+            label: "キャンセル",
             flat: true,
             textColor: "display",
           },

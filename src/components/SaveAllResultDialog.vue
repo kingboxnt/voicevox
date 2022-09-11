@@ -4,7 +4,7 @@
     <q-layout container class="q-dialog-plugin bg-background">
       <q-header>
         <q-toolbar>
-          <q-toolbar-title class="text-display lang=zh-hans"
+          <q-toolbar-title class="text-display"
             >音声書き出し結果</q-toolbar-title
           >
         </q-toolbar>
@@ -42,7 +42,7 @@
       <q-footer>
         <q-toolbar>
           <q-space />
-          <q-btn flat dense align="right" @click="close" label="关闭" />
+          <q-btn flat dense align="right" @click="close" label="閉じる" />
         </q-toolbar>
       </q-footer>
     </q-layout>

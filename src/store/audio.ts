@@ -154,15 +154,15 @@ function generateWriteErrorMessage(writeFileErrorResult: WriteFileErrorResult) {
     const code = writeFileErrorResult.code.toUpperCase();
 
     if (code.startsWith("ENOSPC")) {
-      return "没有足够的空闲空间。";
+      return "空き容量が足りません。";
     }
 
     if (code.startsWith("EACCES")) {
-      return "没有权限访问该文件。";
+      return "ファイルにアクセスする許可がありません。";
     }
   }
 
-  return `未知原因失败。${writeFileErrorResult.message}`;
+  return `何らかの理由で失敗しました。${writeFileErrorResult.message}`;
 }
 
 // TODO: GETTERに移動する。buildFileNameから参照されているので、そちらも一緒に移動する。
@@ -690,7 +690,7 @@ export const audioStore: VoiceVoxStoreOptions<
       return audioKey;
     },
     /**
-     * 指定角色（风格ID）是否初始化引擎
+     * 指定した話者（スタイルID）がエンジン側で初期化されているか
      */
     async IS_INITIALIZED_ENGINE_SPEAKER({ dispatch }, { engineId, styleId }) {
       // FIXME: なぜかbooleanではなくstringが返ってくる。
@@ -1158,7 +1158,7 @@ export const audioStore: VoiceVoxStoreOptions<
           );
         } else {
           filePath ??= await window.electron.showAudioSaveDialog({
-            title: "保存语音",
+            title: "音声を保存",
             defaultPath: buildFileName(state, audioKey),
           });
         }
@@ -1203,7 +1203,7 @@ export const audioStore: VoiceVoxStoreOptions<
             return {
               result: "WRITE_ERROR",
               path: filePath,
-              errorMessage: "lab生成失败。",
+              errorMessage: "labの生成に失敗しました。",
             };
 
           const bom = new Uint8Array([0xef, 0xbb, 0xbf]);
@@ -1268,7 +1268,7 @@ export const audioStore: VoiceVoxStoreOptions<
           dirPath = state.savingSetting.fixedExportDir;
         } else {
           dirPath ??= await window.electron.showOpenDirectoryDialog({
-            title: "保存全部语音",
+            title: "音声を全て保存",
           });
         }
         if (dirPath) {
@@ -1299,7 +1299,7 @@ export const audioStore: VoiceVoxStoreOptions<
           );
         } else {
           filePath ??= await window.electron.showAudioSaveDialog({
-            title: "连接全部语音并保存",
+            title: "音声を全て繋げて保存",
             defaultPath: defaultFileName,
           });
         }
@@ -1451,7 +1451,7 @@ export const audioStore: VoiceVoxStoreOptions<
           );
         } else {
           filePath ??= await window.electron.showTextSaveDialog({
-            title: "连接全部文字并保存为文本文件",
+            title: "文章を全て繋げてテキストファイルに保存",
             defaultPath: defaultFileName,
           });
         }
@@ -1590,8 +1590,8 @@ export const audioStore: VoiceVoxStoreOptions<
             audioElem.addEventListener("canplay", stop);
             window.electron.showMessageDialog({
               type: "error",
-              title: "错误",
-              message: "未找到播放设备",
+              title: "エラー",
+              message: "再生デバイスが見つかりません",
             });
             throw new Error(err);
           });
@@ -2283,7 +2283,7 @@ export const audioCommandStore: VoiceVoxStoreOptions<
       ) => {
         if (!filePath) {
           filePath = await window.electron.showImportFileDialog({
-            title: "加载台词",
+            title: "セリフ読み込み",
           });
           if (!filePath) return;
         }

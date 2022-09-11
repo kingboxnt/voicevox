@@ -16,8 +16,8 @@
             <div class="q-mt-xs">
               {{
                 allEngineState === "STARTING"
-                  ? "引擎启动中・・・"
-                  : "数据准备中・・・"
+                  ? "エンジン起動中・・・"
+                  : "データ準備中・・・"
               }}
             </div>
           </div>
@@ -217,7 +217,7 @@ export default defineComponent({
     // hotkeys handled by Mousetrap
     const hotkeyMap = new Map<HotkeyAction, () => HotkeyReturnType>([
       [
-        "将焦点返回文本栏",
+        "テキスト欄にフォーカスを戻す",
         () => {
           if (activeAudioKey.value !== undefined) {
             focusCell({ audioKey: activeAudioKey.value });
@@ -249,7 +249,7 @@ export default defineComponent({
         if (
           !event.isComposing &&
           !uiLocked.value &&
-          parseCombo(event) == hotkeySettingsMap.value.get("添加文本栏")
+          parseCombo(event) == hotkeySettingsMap.value.get("テキスト欄を追加")
         ) {
           addAudioItem();
           event.preventDefault();
@@ -259,7 +259,7 @@ export default defineComponent({
         if (
           !event.isComposing &&
           !uiLocked.value &&
-          parseCombo(event) == hotkeySettingsMap.value.get("删除文本栏")
+          parseCombo(event) == hotkeySettingsMap.value.get("テキスト欄を削除")
         ) {
           removeAudioItem();
           event.preventDefault();
@@ -269,7 +269,8 @@ export default defineComponent({
         if (
           !event.isComposing &&
           !uiLocked.value &&
-          parseCombo(event) == hotkeySettingsMap.value.get("从文本栏移除焦点")
+          parseCombo(event) ==
+            hotkeySettingsMap.value.get("テキスト欄からフォーカスを外す")
         ) {
           if (document.activeElement instanceof HTMLInputElement) {
             document.activeElement.blur();
@@ -590,7 +591,7 @@ export default defineComponent({
         }),
     });
 
-    // 角色排序
+    // キャラクター並び替え
     const flattenCharacterInfos = computed(
       () => store.getters.GET_FLATTEN_CHARACTER_INFOS
     );
@@ -651,10 +652,11 @@ export default defineComponent({
           break;
         default:
           $q.dialog({
-            title: "文件不支持",
-            message: "支持文本文件 (.txt) 和VOICEVOX工程文件 (.vvproj)。",
+            title: "対応していないファイルです",
+            message:
+              "テキストファイル (.txt) とVOICEVOXプロジェクトファイル (.vvproj) に対応しています。",
             ok: {
-              label: "关闭",
+              label: "閉じる",
               flat: true,
               textColor: "display",
             },

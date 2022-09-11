@@ -35,18 +35,19 @@ export async function generateAndSaveOneAudioWithDialog({
       if (result.errorMessage) {
         msg = result.errorMessage;
       } else {
-        msg = "由于一些原因导出失败。请查看日志。";
+        msg = "何らかの理由で書き出しに失敗しました。ログを参照してください。";
       }
       break;
     case "ENGINE_ERROR":
-      msg = "由于引擎错误而失败。 请尝试重新启动引擎。";
+      msg =
+        "エンジンのエラーによって失敗しました。エンジンの再起動をお試しください。";
       break;
   }
   quasarDialog({
-    title: "导出失败。",
+    title: "書き出しに失敗しました。",
     message: msg,
     ok: {
-      label: "关闭",
+      label: "閉じる",
       flat: true,
       textColor: "secondary",
     },
@@ -138,19 +139,20 @@ export async function generateAndConnectAndSaveAudioWithDialog({
       if (result.errorMessage) {
         msg = result.errorMessage;
       } else {
-        msg = "由于一些原因导出失败。请查看日志。";
+        msg = "何らかの理由で書き出しに失敗しました。ログを参照してください。";
       }
       break;
     case "ENGINE_ERROR":
-      msg = "由于引擎错误而失败。 请尝试重新启动引擎。";
+      msg =
+        "エンジンのエラーによって失敗しました。エンジンの再起動をお試しください。";
       break;
   }
 
   quasarDialog({
-    title: "导出失败。",
+    title: "書き出しに失敗しました。",
     message: msg,
     ok: {
-      label: "关闭",
+      label: "閉じる",
       flat: true,
       textColor: "secondary",
     },
@@ -183,15 +185,16 @@ export async function connectAndExportTextWithDialog({
   let msg = "";
   switch (result.result) {
     case "WRITE_ERROR":
-      msg = "由于导入错误而失败。请检查是否有空闲空间和写入许可。";
+      msg =
+        "書き込みエラーによって失敗しました。空き容量があることや、書き込み権限があることをご確認ください。";
       break;
   }
 
   quasarDialog({
-    title: "导出文本失败。",
+    title: "テキストの書き出しに失敗しました。",
     message: msg,
     ok: {
-      label: "关闭",
+      label: "閉じる",
       flat: true,
       textColor: "secondary",
     },

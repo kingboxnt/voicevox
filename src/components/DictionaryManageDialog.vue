@@ -10,8 +10,8 @@
       <q-page-container>
         <q-header class="q-pa-sm">
           <q-toolbar>
-            <q-toolbar-title class="text-display lang=zh-hans"
-              >朗读＆口音词典</q-toolbar-title
+            <q-toolbar-title class="text-display"
+              >読み方＆アクセント辞書</q-toolbar-title
             >
             <q-space />
             <!-- close button -->
@@ -28,13 +28,13 @@
           <div v-if="loadingDict" class="loading-dict">
             <div>
               <q-spinner color="primary" size="2.5rem" />
-              <div class="q-mt-xs">加载中・・・</div>
+              <div class="q-mt-xs">読み込み中・・・</div>
             </div>
           </div>
           <div class="col-4 word-list-col">
             <div v-if="wordEditing" class="word-list-disable-overlay" />
             <div class="word-list-header text-no-wrap">
-              <div class="row word-list-title text-h5">单词列表</div>
+              <div class="row word-list-title text-h5">単語一覧</div>
               <div class="row no-wrap">
                 <q-btn
                   outline
@@ -42,7 +42,7 @@
                   class="text-no-wrap text-bold col-sm q-ma-sm"
                   @click="deleteWord"
                   :disable="uiLocked || !isDeletable"
-                  >删除</q-btn
+                  >削除</q-btn
                 >
                 <q-btn
                   outline
@@ -50,7 +50,7 @@
                   class="text-no-wrap text-bold col-sm q-ma-sm"
                   @click="editWord"
                   :disable="uiLocked || !selectedId"
-                  >编辑</q-btn
+                  >編集</q-btn
                 >
                 <q-btn
                   outline
@@ -58,7 +58,7 @@
                   class="text-no-wrap text-bold col-sm q-ma-sm"
                   @click="newWord"
                   :disable="uiLocked"
-                  >添加</q-btn
+                  >追加</q-btn
                 >
               </div>
             </div>
@@ -89,7 +89,7 @@
             class="col-8 no-wrap text-no-wrap word-editor"
           >
             <div class="row q-pl-md q-mt-md">
-              <div class="text-h6">单词</div>
+              <div class="text-h6">単語</div>
               <q-input
                 ref="surfaceInput"
                 class="word-input"
@@ -101,7 +101,7 @@
               />
             </div>
             <div class="row q-pl-md q-pt-sm">
-              <div class="text-h6">朗读</div>
+              <div class="text-h6">読み</div>
               <q-input
                 ref="yomiInput"
                 class="word-input q-pb-none"
@@ -113,13 +113,13 @@
                 :disable="uiLocked"
               >
                 <template v-slot:error>
-                  只能使用平假名和片假名字符进行朗读。
+                  読みに使える文字はひらがなとカタカナのみです。
                 </template>
               </q-input>
             </div>
-            <div class="row q-pl-md q-mt-lg text-h6">重音调整</div>
+            <div class="row q-pl-md q-mt-lg text-h6">アクセント調整</div>
             <div class="row q-pl-md desc-row">
-              考虑到词尾的重音、会自动插入「が」。
+              語尾のアクセントを考慮するため、「が」が自動で挿入されます。
             </div>
             <div class="row q-px-md" style="height: 130px">
               <div class="play-button">
@@ -175,9 +175,9 @@
                 </div>
               </div>
             </div>
-            <div class="row q-pl-md q-pt-lg text-h6">单词优先级</div>
+            <div class="row q-pl-md q-pt-lg text-h6">単語優先度</div>
             <div class="row q-pl-md desc-row">
-              如果一个单词注册后没有反映、可以尝试增加优先级的数值。
+              単語を登録しても反映されないと感じた場合、優先度の数値を上げてみてください。
             </div>
             <div
               class="row q-px-md"
@@ -208,7 +208,7 @@
                 class="text-no-wrap text-bold q-mr-sm"
                 @click="resetWord"
                 :disable="uiLocked || !isWordChanged"
-                >重置</q-btn
+                >リセット</q-btn
               >
               <q-btn
                 outline
@@ -224,7 +224,7 @@
                 class="text-no-wrap text-bold q-mr-sm"
                 @click="isWordChanged ? discardOrNotDialog(cancel) : cancel()"
                 :disable="uiLocked"
-                >取消</q-btn
+                >キャンセル</q-btn
               >
             </div>
           </div>
@@ -297,10 +297,10 @@ export default defineComponent({
         );
       } catch {
         $q.dialog({
-          title: "获取词典失败",
-          message: "尝试重新启动引擎。",
+          title: "辞書の取得に失敗しました",
+          message: "エンジンの再起動をお試しください。",
           ok: {
-            label: "关闭",
+            label: "閉じる",
             flat: true,
             textColor: "display",
           },
@@ -352,7 +352,7 @@ export default defineComponent({
     const accentPhraseTable = ref<HTMLElement>();
 
     const convertHankakuToZenkaku = (text: string) => {
-      // "!"开始"~"用全角字符替换范围内的字符(数字或字母)
+      // "!"から"~"までの範囲の文字(数字やアルファベット)を全角に置き換える
       return text.replace(/[\u0021-\u007e]/g, (s) => {
         return String.fromCharCode(s.charCodeAt(0) + 0xfee0);
       });
@@ -468,10 +468,10 @@ export default defineComponent({
         if (!blob) {
           nowGenerating.value = false;
           $q.dialog({
-            title: "生成失败",
-            message: "尝试重新启动引擎。",
+            title: "生成に失敗しました",
+            message: "エンジンの再起動をお試しください。",
             ok: {
-              label: "关闭",
+              label: "閉じる",
               flat: true,
               textColor: "display",
             },
@@ -538,10 +538,10 @@ export default defineComponent({
           });
         } catch {
           $q.dialog({
-            title: "更新单词失败",
-            message: "尝试重新启动引擎。",
+            title: "単語の更新に失敗しました",
+            message: "エンジンの再起動をお試しください。",
             ok: {
-              label: "关闭",
+              label: "閉じる",
               flat: true,
               textColor: "display",
             },
@@ -560,10 +560,10 @@ export default defineComponent({
           );
         } catch {
           $q.dialog({
-            title: "注册单词失败",
-            message: "尝试重新启动引擎。",
+            title: "単語の登録に失敗しました",
+            message: "エンジンの再起動をお試しください。",
             ok: {
-              label: "关闭",
+              label: "閉じる",
               flat: true,
               textColor: "display",
             },
@@ -577,17 +577,17 @@ export default defineComponent({
     const isDeletable = computed(() => !!selectedId.value);
     const deleteWord = () => {
       $q.dialog({
-        title: "是否删除注册的单词？",
-        message: "删除的单词无法恢复。",
+        title: "登録された単語を削除しますか？",
+        message: "削除された単語は復旧できません。",
         persistent: true,
         focus: "cancel",
         ok: {
-          label: "删除",
+          label: "削除",
           flat: true,
           textColor: "warning",
         },
         cancel: {
-          label: "取消",
+          label: "キャンセル",
           flat: true,
           textColor: "display",
         },
@@ -600,10 +600,10 @@ export default defineComponent({
           );
         } catch {
           $q.dialog({
-            title: "删除单词失败",
-            message: "尝试重新启动引擎。",
+            title: "単語の削除に失敗しました",
+            message: "エンジンの再起動をお試しください。",
             ok: {
-              label: "关闭",
+              label: "閉じる",
               flat: true,
               textColor: "display",
             },
@@ -616,17 +616,17 @@ export default defineComponent({
     };
     const resetWord = () => {
       $q.dialog({
-        title: "重置更改的单词？",
-        message: "丢弃并重置更改的单词。",
+        title: "単語の変更をリセットしますか？",
+        message: "単語の変更は破棄されてリセットされます。",
         persistent: true,
         focus: "cancel",
         ok: {
-          label: "重置",
+          label: "リセット",
           flat: true,
           textColor: "display",
         },
         cancel: {
-          label: "取消",
+          label: "キャンセル",
           flat: true,
           textColor: "display",
         },
@@ -637,17 +637,18 @@ export default defineComponent({
     const discardOrNotDialog = (okCallback: () => void) => {
       if (isWordChanged.value) {
         $q.dialog({
-          title: "是否丢弃添加/更改的单词？",
-          message: "如果继续、单词的添加/更改将被丢弃并重置。",
+          title: "単語の追加・変更を破棄しますか？",
+          message:
+            "このまま続行すると、単語の追加・変更は破棄されてリセットされます。",
           persistent: true,
           focus: "cancel",
           ok: {
-            label: "继续",
+            label: "続行",
             flat: true,
             textColor: "display",
           },
           cancel: {
-            label: "取消",
+            label: "キャンセル",
             flat: true,
             textColor: "display",
           },

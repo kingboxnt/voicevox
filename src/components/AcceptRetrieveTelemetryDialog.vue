@@ -10,8 +10,8 @@
       <q-header class="q-py-sm">
         <q-toolbar>
           <div class="column">
-            <q-toolbar-title class="text-display lang=zh-hans"
-              >为了提升便利性请允许以下使用条款</q-toolbar-title
+            <q-toolbar-title class="text-display"
+              >使いやすさ向上のためのお願い</q-toolbar-title
             >
           </div>
 
@@ -20,7 +20,7 @@
           <div class="row items-center no-wrap">
             <q-btn
               unelevated
-              label="拒绝"
+              label="拒否"
               color="toolbar-button"
               text-color="toolbar-button-display"
               class="text-no-wrap q-mr-md text-bold"
@@ -29,7 +29,7 @@
 
             <q-btn
               unelevated
-              label="允许"
+              label="許可"
               color="toolbar-button"
               text-color="toolbar-button-display"
               class="text-no-wrap text-bold"
@@ -42,15 +42,15 @@
       <q-page-container>
         <q-page>
           <p class="text-body1 q-mb-lg">
-            VOICEVOX已被开发为一个更方便用户使用的软件。<br /><br />
-            当重新排列按钮时、各个UI界面使用率等信息的收集很重要。<br />
-            如果您愿意帮助我们收集关于软件使用的数据、请允许这样做。<br />
+            VOICEVOXはより使いやすいソフトウェアを目指して開発されています。<br /><br />
+            ボタンの配置換えなどの方針を決める際は、各UIの利用率などの情報が重要になります。<br />
+            もしよろしければ、ソフトウェアの利用状況のデータ収集にご協力お願いします。<br />
             <br />
-            （请放心、我们不会收集您输入的文字或语音数据的任何信息。）
+            （入力されたテキストデータや音声データの情報は収集しておりませんのでご安心ください。）
           </p>
           <q-card flat bordered>
             <q-card-section>
-              <div class="text-h5">隐私政策</div>
+              <div class="text-h5">プライバシーポリシー</div>
             </q-card-section>
 
             <q-card-section class="text-body1">

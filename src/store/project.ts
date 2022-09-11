@@ -54,8 +54,10 @@ export const projectStore: VoiceVoxStoreOptions<
           const result: number = await window.electron.showQuestionDialog({
             type: "info",
             title: "警告",
-            message: "修改的工程未保存。\n" + "是否丢弃这些修改？",
-            buttons: ["丢弃", "取消"],
+            message:
+              "プロジェクトの変更が保存されていません。\n" +
+              "変更を破棄してもよろしいですか？",
+            buttons: ["破棄", "キャンセル"],
             cancelId: 1,
           });
           if (result == 1) {
@@ -86,7 +88,7 @@ export const projectStore: VoiceVoxStoreOptions<
         if (!filePath) {
           // Select and load a project File.
           const ret = await window.electron.showProjectLoadDialog({
-            title: "选择工程文件",
+            title: "プロジェクトファイルの選択",
           });
           if (ret == undefined || ret?.length == 0) {
             return;
@@ -200,11 +202,11 @@ export const projectStore: VoiceVoxStoreOptions<
               const audioItem = obj.audioItems[audioItemsKey];
               if (audioItem.characterIndex != null) {
                 if (audioItem.characterIndex == 0) {
-                  // 四国めたん 0 -> 四国めたん(撒娇) 0
+                  // 四国めたん 0 -> 四国めたん(あまあま) 0
                   audioItem.speaker = 0;
                 }
                 if (audioItem.characterIndex == 1) {
-                  // ずんだもん 1 -> ずんだもん(撒娇) 1
+                  // ずんだもん 1 -> ずんだもん(あまあま) 1
                   audioItem.speaker = 1;
                 }
                 delete audioItem.characterIndex;
@@ -271,8 +273,10 @@ export const projectStore: VoiceVoxStoreOptions<
             const result: number = await window.electron.showQuestionDialog({
               type: "info",
               title: "警告",
-              message: "加载一个工程将丢弃当前工程。\n" + "是否丢弃这些修改？",
-              buttons: ["丢弃", "取消"],
+              message:
+                "プロジェクトをロードすると現在のプロジェクトは破棄されます。\n" +
+                "変更を破棄してもよろしいですか？",
+              buttons: ["破棄", "キャンセル"],
               cancelId: 1,
             });
             if (result == 1) {
@@ -300,12 +304,12 @@ export const projectStore: VoiceVoxStoreOptions<
             if (typeof err === "string") return err;
             if (!(err instanceof Error)) return "エラーが発生しました。";
             if (err.message.startsWith(projectFileErrorMsg))
-              return "文件格式不正确。";
+              return "ファイルフォーマットが正しくありません。";
             return err.message;
           })();
           await window.electron.showMessageDialog({
             type: "error",
-            title: "错误",
+            title: "エラー",
             message,
           });
         }
@@ -327,7 +331,7 @@ export const projectStore: VoiceVoxStoreOptions<
 
           // Write the current status to a project file.
           const ret = await window.electron.showProjectSaveDialog({
-            title: "保存工程文件",
+            title: "プロジェクトファイルの保存",
             defaultPath,
           });
           if (ret == undefined) {

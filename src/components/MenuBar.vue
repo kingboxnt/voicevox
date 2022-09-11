@@ -132,10 +132,10 @@ export default defineComponent({
       const activeAudioKey = store.getters.ACTIVE_AUDIO_KEY;
       if (activeAudioKey == undefined) {
         $q.dialog({
-          title: "未选择文本栏",
-          message: "请选择导出语音的文本栏。",
+          title: "テキスト欄が選択されていません",
+          message: "音声を書き出したいテキスト欄を選択してください。",
           ok: {
-            label: "关闭",
+            label: "閉じる",
             flat: true,
             textColor: "secondary",
           },
@@ -214,28 +214,28 @@ export default defineComponent({
     const menudata = ref<MenuItemData[]>([
       {
         type: "root",
-        label: " 文件 ",
+        label: "ファイル",
         onClick: () => {
           closeAllDialog();
         },
         subMenu: [
           {
             type: "button",
-            label: "导出语音",
+            label: "音声書き出し",
             onClick: () => {
               generateAndSaveAllAudio();
             },
           },
           {
             type: "button",
-            label: "导出一个",
+            label: "一つだけ書き出し",
             onClick: () => {
               generateAndSaveOneAudio();
             },
           },
           {
             type: "button",
-            label: "连接语音并导出",
+            label: "音声を繋げて書き出し",
             onClick: () => {
               generateAndConnectAndSaveAllAudio();
             },
@@ -243,14 +243,14 @@ export default defineComponent({
           { type: "separator" },
           {
             type: "button",
-            label: "连接文本并导出",
+            label: "テキストを繋げて書き出し",
             onClick: () => {
               connectAndExportText();
             },
           },
           {
             type: "button",
-            label: "加载文本",
+            label: "テキスト読み込み",
             onClick: () => {
               importTextFile();
             },
@@ -258,26 +258,26 @@ export default defineComponent({
           { type: "separator" },
           {
             type: "button",
-            label: "新建工程",
+            label: "新規プロジェクト",
             onClick: createNewProject,
           },
           {
             type: "button",
-            label: "覆盖工程",
+            label: "プロジェクトを上書き保存",
             onClick: () => {
               saveProject();
             },
           },
           {
             type: "button",
-            label: "工程另存为",
+            label: "プロジェクトを名前を付けて保存",
             onClick: () => {
               saveProjectAs();
             },
           },
           {
             type: "button",
-            label: "加载工程",
+            label: "プロジェクト読み込み",
             onClick: () => {
               importProject();
             },
@@ -286,14 +286,14 @@ export default defineComponent({
       },
       {
         type: "root",
-        label: " 引擎 ",
+        label: "エンジン",
         onClick: () => {
           closeAllDialog();
         },
         subMenu: [
           {
             type: "button",
-            label: "重新启动全部引擎",
+            label: "全てのエンジンを再起動",
             onClick: () => {
               store.dispatch("RESTART_ENGINE_ALL");
             },
@@ -302,14 +302,14 @@ export default defineComponent({
       },
       {
         type: "root",
-        label: " 设置 ",
+        label: "設定",
         onClick: () => {
           closeAllDialog();
         },
         subMenu: [
           {
             type: "button",
-            label: "键盘快捷键",
+            label: "キー割り当て",
             onClick() {
               store.dispatch("IS_HOTKEY_SETTING_DIALOG_OPEN", {
                 isHotkeySettingDialogOpen: true,
@@ -318,7 +318,7 @@ export default defineComponent({
           },
           {
             type: "button",
-            label: "自定义工具栏",
+            label: "ツールバーのカスタマイズ",
             onClick() {
               store.dispatch("IS_TOOLBAR_SETTING_DIALOG_OPEN", {
                 isToolbarSettingDialogOpen: true,
@@ -327,7 +327,7 @@ export default defineComponent({
           },
           {
             type: "button",
-            label: "角色排序・试听",
+            label: "キャラクター並び替え・試聴",
             onClick() {
               store.dispatch("IS_CHARACTER_ORDER_DIALOG_OPEN", {
                 isCharacterOrderDialogOpen: true,
@@ -336,7 +336,7 @@ export default defineComponent({
           },
           {
             type: "button",
-            label: "默认风格",
+            label: "デフォルトスタイル",
             onClick() {
               store.dispatch("IS_DEFAULT_STYLE_SELECT_DIALOG_OPEN", {
                 isDefaultStyleSelectDialogOpen: true,
@@ -345,7 +345,7 @@ export default defineComponent({
           },
           {
             type: "button",
-            label: "朗读＆口音词典",
+            label: "読み方＆アクセント辞書",
             onClick() {
               store.dispatch("IS_DICTIONARY_MANAGE_DIALOG_OPEN", {
                 isDictionaryManageDialogOpen: true,
@@ -355,7 +355,7 @@ export default defineComponent({
           { type: "separator" },
           {
             type: "button",
-            label: " 选项 ",
+            label: "オプション",
             onClick() {
               store.dispatch("IS_SETTING_DIALOG_OPEN", {
                 isSettingDialogOpen: true,
@@ -366,7 +366,7 @@ export default defineComponent({
       },
       {
         type: "button",
-        label: " 帮助 ",
+        label: "ヘルプ",
         onClick: () => {
           if (store.state.isHelpDialogOpen) closeAllDialog();
           else {
@@ -391,14 +391,14 @@ export default defineComponent({
     };
 
     const hotkeyMap = new Map<HotkeyAction, () => HotkeyReturnType>([
-      ["新建工程", createNewProject],
-      ["导出语音", generateAndSaveAllAudio],
-      ["导出一个", generateAndSaveOneAudio],
-      ["连接语音并导出", generateAndConnectAndSaveAllAudio],
-      ["加载文本", importTextFile],
-      ["覆盖工程", saveProject],
-      ["工程另存为", saveProjectAs],
-      ["加载工程", importProject],
+      ["新規プロジェクト", createNewProject],
+      ["音声書き出し", generateAndSaveAllAudio],
+      ["一つだけ書き出し", generateAndSaveOneAudio],
+      ["音声を繋げて書き出し", generateAndConnectAndSaveAllAudio],
+      ["テキスト読み込む", importTextFile],
+      ["プロジェクトを上書き保存", saveProject],
+      ["プロジェクトを名前を付けて保存", saveProjectAs],
+      ["プロジェクト読み込み", importProject],
     ]);
 
     setHotkeyFunctions(hotkeyMap);
@@ -406,14 +406,14 @@ export default defineComponent({
     // エンジン毎の項目を追加
     async function updateEngines() {
       const engineMenu = menudata.value.find(
-        (x) => x.type === "root" && x.label === " 引擎 "
+        (x) => x.type === "root" && x.label === "エンジン"
       ) as MenuItemRoot;
       if (Object.values(engineInfos.value).length === 1) {
         const engineInfo = Object.values(engineInfos.value)[0];
         engineMenu.subMenu = [
           engineInfo.path && {
             type: "button",
-            label: "打开文件夹",
+            label: "フォルダを開く",
             onClick: () => {
               store.dispatch("OPEN_ENGINE_DIRECTORY", {
                 engineId: engineInfo.uuid,
@@ -422,7 +422,7 @@ export default defineComponent({
           },
           {
             type: "button",
-            label: "重新启动",
+            label: "再起動",
             onClick: () => {
               store.dispatch("RESTART_ENGINE", {
                 engineId: engineInfo.uuid,
@@ -441,7 +441,7 @@ export default defineComponent({
                 subMenu: [
                   engineInfo.path && {
                     type: "button",
-                    label: "打开文件夹",
+                    label: "フォルダを開く",
                     onClick: () => {
                       store.dispatch("OPEN_ENGINE_DIRECTORY", {
                         engineId: engineInfo.uuid,
@@ -450,7 +450,7 @@ export default defineComponent({
                   },
                   {
                     type: "button",
-                    label: "重新启动",
+                    label: "再起動",
                     onClick: () => {
                       store.dispatch("RESTART_ENGINE", {
                         engineId: engineInfo.uuid,
@@ -465,7 +465,7 @@ export default defineComponent({
           },
           {
             type: "button",
-            label: "重新启动全部引擎",
+            label: "全てのエンジンを再起動",
             onClick: () => {
               store.dispatch("RESTART_ENGINE_ALL");
             },

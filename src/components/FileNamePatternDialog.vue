@@ -6,9 +6,9 @@
   >
     <q-card class="q-pa-md dialog-card">
       <q-card-section>
-        <div class="text-h5">导出文件名样式</div>
+        <div class="text-h5">書き出しファイル名パターン</div>
         <div class="text-body2 text-grey-8">
-          点击「$角色$」标签按钮自定义导出文件名
+          「$キャラ$」のようなタグを使って書き出すファイル名をカスタマイズできます
         </div>
       </q-card-section>
       <q-card-actions class="setting-card q-px-md q-py-sm">
@@ -18,7 +18,7 @@
               dense
               outlined
               bg-color="background"
-              label="文件名样式"
+              label="ファイル名パターン"
               suffix=".wav"
               :maxlength="maxLength"
               :error="hasError"
@@ -28,7 +28,7 @@
             >
               <template v-slot:after>
                 <q-btn
-                  label="重置为默认值"
+                  label="デフォルトにリセット"
                   outline
                   text-color="display"
                   class="text-no-wrap q-mr-sm"
@@ -39,7 +39,7 @@
           </div>
         </div>
         <div class="text-body2 text-ellipsis">
-          导出示例）{{ previewFileName }}
+          出力例）{{ previewFileName }}
         </div>
         <div class="row full-width q-my-md">
           <q-btn
@@ -54,14 +54,14 @@
         </div>
         <div class="row full-width justify-end">
           <q-btn
-            label="取消"
+            label="キャンセル"
             outline
             text-color="display"
             class="text-no-wrap text-bold q-mr-sm col-2"
             @click="updateOpenDialog(false)"
           />
           <q-btn
-            label="确定"
+            label="確定"
             unelevated
             color="primary"
             text-color="display-on-primary"
@@ -136,18 +136,20 @@ export default defineComponent({
     });
     const errorMessage = computed(() => {
       if (currentFileNamePattern.value.length === 0) {
-        return "请输入内容";
+        return "何か入力してください";
       }
 
       const result: string[] = [];
       if (invalidChar.value !== "") {
-        result.push(`包含不能使用的字符：「${invalidChar.value}」`);
+        result.push(
+          `使用できない文字が含まれています：「${invalidChar.value}」`
+        );
       }
       if (previewFileName.value.includes("$")) {
-        result.push(`存在非法标签或本身包含$`);
+        result.push(`不正なタグが存在するか、$が単体で含まれています`);
       }
       if (hasNotIndexTagString.value) {
-        result.push(`必须是 $${replaceTagIdToTagString["index"]}$ `);
+        result.push(`$${replaceTagIdToTagString["index"]}$は必須です`);
       }
       return result.join(", ");
     });
