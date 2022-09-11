@@ -44,8 +44,8 @@
               <div class="root">
                 <q-header class="q-pa-sm">
                   <q-toolbar>
-                    <q-toolbar-title class="text-display">
-                      ヘルプ / {{ page.name }}
+                    <q-toolbar-title class="text-display lang=zh-hans">
+                      帮助 / {{ page.name }}
                     </q-toolbar-title>
                     <q-space />
                     <!-- close button -->
@@ -101,35 +101,35 @@ export default defineComponent({
 
     const pagedata: Page[] = [
       {
-        name: "ソフトウェアの利用規約",
+        name: "软件的使用条款",
         component: Policy,
       },
       {
-        name: "音声ライブラリの利用規約",
+        name: "语音库的使用条款",
         component: LibraryPolicy,
       },
       {
-        name: "使い方",
+        name: "使用方法",
         component: HowToUse,
       },
       {
-        name: "開発コミュニティ",
+        name: "开发社区",
         component: OssCommunityInfo,
       },
       {
-        name: "ライセンス情報",
+        name: "许可证信息",
         component: OssLicense,
       },
       {
-        name: "アップデート情報",
+        name: "更新信息",
         component: UpdateInfo,
       },
       {
-        name: "よくあるご質問",
+        name: "常见问题",
         component: QAndA,
       },
       {
-        name: "お問い合わせ",
+        name: "联系我们",
         component: ContactInfo,
       },
     ];

@@ -434,10 +434,8 @@ export const uiStore: VoiceVoxStoreOptions<UiGetters, UiActions, UiMutations> =
           const result: number = await window.electron.showQuestionDialog({
             type: "info",
             title: "警告",
-            message:
-              "プロジェクトの変更が保存されていません。\n" +
-              "変更を破棄してもよろしいですか？",
-            buttons: ["破棄", "キャンセル"],
+            message: "修改的工程未保存。\n" + "是否丢弃这些修改？",
+            buttons: ["丢弃", "取消"],
             cancelId: 1,
           });
           if (result == 1) {

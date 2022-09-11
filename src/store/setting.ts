@@ -299,11 +299,11 @@ export const settingStore: VoiceVoxStoreOptions<
         if (useGpu && !isAvailableGPUMode) {
           const result = await window.electron.showQuestionDialog({
             type: "warning",
-            title: "対応するGPUデバイスが見つかりません",
+            title: "未找到相应的GPU设备",
             message:
-              "GPUモードの利用には対応するGPUデバイスが必要です。\n" +
-              "このままGPUモードに変更するとエンジンエラーが発生する可能性があります。本当に変更しますか？",
-            buttons: ["変更する", "変更しない"],
+              "GPU模式需要兼容的GPU硬件设备。\n" +
+              "当前更改为GPU模式可能会导致引擎错误。是否确定更改？",
+            buttons: ["更改", "不更改"],
             cancelId: 1,
           });
           if (result == 1) {
@@ -323,9 +323,8 @@ export const settingStore: VoiceVoxStoreOptions<
         if (!success && useGpu) {
           await window.electron.showMessageDialog({
             type: "error",
-            title: "GPUモードに変更できませんでした",
-            message:
-              "GPUモードでエンジンを起動できなかったためCPUモードに戻します",
+            title: "无法更改为GPU模式",
+            message: "引擎无法在GPU模式下启动。已恢复为CPU模式",
           });
           await dispatch("CHANGE_USE_GPU", { useGpu: false });
           return;

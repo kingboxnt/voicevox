@@ -9,13 +9,13 @@
     <q-layout container view="hHh Lpr lff" class="bg-background">
       <q-header class="q-py-sm">
         <q-toolbar>
-          <q-toolbar-title class="text-display"
-            >設定 / キー割り当て</q-toolbar-title
+          <q-toolbar-title class="text-display lang=zh-hans"
+            >设置 / 键盘快捷键</q-toolbar-title
           >
           <q-input
             hide-bottom-space
             dense
-            placeholder="検索"
+            placeholder="搜索"
             color="display"
             class="q-mr-sm search-box"
             v-model="hotkeyFilter"
@@ -83,8 +83,8 @@
                       getHotkeyText(props.row.action, props.row.combination)
                         .split(' ')
                         .map((hotkeyText) => {
-                          // Mac の Meta キーは Cmd キーであるため、Meta の表示名を Cmd に置換する
-                          // Windows PC では Meta キーは Windows キーだが、使用頻度低と考えられるため暫定的に Mac 対応のみを考慮している
+                          // 由于Mac上的Meta键是Cmd键、Meta的显示名称被Cmd取代
+                          // 在Windows PC上 Meta 键是 Windows 键、但由于不经常使用所以暂时仅支持 Mac
                           return hotkeyText === 'Meta' ? 'Cmd' : hotkeyText;
                         })
                         .join(' + ')
@@ -100,7 +100,7 @@
                     :disable="checkHotkeyReadonly(props.row.action)"
                     @click="resetHotkey(props.row.action)"
                   >
-                    <q-tooltip :delay="500">デフォルトに戻す</q-tooltip>
+                    <q-tooltip :delay="500">重置默认值</q-tooltip>
                   </q-btn>
                 </q-td>
               </q-tr>
@@ -121,14 +121,14 @@
   >
     <q-card class="q-py-sm q-px-md">
       <q-card-section align="center">
-        <div class="text-h6">ショートカットキーを入力してください</div>
+        <div class="text-h6">输入快捷键</div>
       </q-card-section>
       <q-card-section align="center">
         <template v-for="(hotkey, index) in lastRecord.split(' ')" :key="index">
           <span v-if="index !== 0"> + </span>
           <!--
-          Mac の Meta キーは Cmd キーであるため、Meta の表示名を Cmd に置換する
-          Windows PC では Meta キーは Windows キーだが、使用頻度低と考えられるため暫定的に Mac 対応のみを考慮している
+          由于Mac上的Meta键是Cmd键、Meta的显示名称被Cmd取代
+          在Windows PC上 Meta 键是 Windows 键、但由于不经常使用所以暂时仅支持 Mac
           -->
           <q-chip :ripple="false" color="surface">
             {{ hotkey === "Meta" ? "Cmd" : hotkey }}
@@ -136,9 +136,7 @@
         </template>
         <span v-if="lastRecord !== '' && confirmBtnEnabled"> +</span>
         <div v-if="duplicatedHotkey != undefined" class="text-warning q-mt-lg">
-          <div class="text-warning">
-            ショートカットキーが次の操作と重複しています
-          </div>
+          <div class="text-warning">快捷键重复以下操作</div>
           <div class="q-mt-sm text-weight-bold text-warning">
             「{{ duplicatedHotkey.action }}」
           </div>
@@ -147,7 +145,7 @@
       <q-card-actions align="center">
         <q-btn
           padding="xs md"
-          label="ショートカットキーを未設定にする"
+          label="快捷键设置为「未设定」"
           unelevated
           color="surface"
           text-color="display"
@@ -159,7 +157,7 @@
         />
         <q-btn
           padding="xs md"
-          label="キャンセル"
+          label="取消"
           unelevated
           color="surface"
           text-color="display"
@@ -184,7 +182,7 @@
         <q-btn
           v-else
           padding="xs md"
-          label="上書きする"
+          label="替换"
           unelevated
           color="primary"
           text-color="display-on-primary"
@@ -240,7 +238,7 @@ export default defineComponent({
       {
         name: "combination",
         align: "left",
-        label: "ショートカットキー",
+        label: "快捷键",
         field: "combination",
       },
     ]);
@@ -281,8 +279,8 @@ export default defineComponent({
     };
 
     const getHotkeyText = (action: string, combo: string) => {
-      if (checkHotkeyReadonly(action)) combo = "(読み取り専用) " + combo;
-      if (combo == "") return "未設定";
+      if (checkHotkeyReadonly(action)) combo = "(仅限只读) " + combo;
+      if (combo == "") return "未设定";
       else return combo;
     };
 
@@ -331,16 +329,16 @@ export default defineComponent({
 
     const resetHotkey = (action: string) => {
       $q.dialog({
-        title: "ショートカットキーを初期値に戻します",
-        message: `${action}のショートカットキーを初期値に戻します。<br/>本当に戻しますか？`,
+        title: "快捷键重置为默认值",
+        message: `${action}   快捷键将重置为默认值。<br/>是否重置？`,
         html: true,
         ok: {
-          label: "初期値に戻す",
+          label: "重置默认值",
           flat: true,
           textColor: "secondary",
         },
         cancel: {
-          label: "初期値に戻さない",
+          label: "不重置默认值",
           flat: true,
           textColor: "secondary",
         },

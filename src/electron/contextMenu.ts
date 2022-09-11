@@ -1,9 +1,9 @@
 import { Menu } from "electron";
 
 export const textEditContextMenu = Menu.buildFromTemplate([
-  { label: "切り取り", role: "cut" },
-  { label: "コピー", role: "copy" },
-  { label: "貼り付け", role: "paste" },
+  { label: "剪切", role: "cut" },
+  { label: "复制", role: "copy" },
+  { label: "粘贴", role: "paste" },
   { type: "separator" },
-  { label: "全選択", role: "selectAll" },
+  { label: "全选", role: "selectAll" },
 ]);

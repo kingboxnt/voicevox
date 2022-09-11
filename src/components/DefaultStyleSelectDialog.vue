@@ -13,14 +13,14 @@
             <q-toolbar-title
               v-if="isFirstTime && showCharacterInfos.length > 0"
               class="text-display text-h6"
-              >「{{ showCharacterInfos[pageIndex].metas.speakerName }}」の{{
+              >「{{ showCharacterInfos[pageIndex].metas.speakerName }}」{{
                 showCharacterInfos[pageIndex].metas.styles.length > 1
-                  ? "デフォルトのスタイル（喋り方）を選んでください"
-                  : "サンプル音声を視聴できます"
+                  ? "请选择一个默认的风格（朗读风格）"
+                  : "收听语音样本"
               }}
             </q-toolbar-title>
-            <q-toolbar-title v-else class="text-display"
-              >設定 / デフォルトスタイル・試聴</q-toolbar-title
+            <q-toolbar-title v-else class="text-display lang=zh-hans"
+              >设置 / 默认风格・试听</q-toolbar-title
             >
             <span
               v-if="
@@ -30,7 +30,7 @@
               "
               class="text-display text-caption q-ml-sm"
             >
-              ※後からでも変更できます
+              ※可以稍后更改
             </span>
           </div>
 
@@ -40,7 +40,7 @@
             <q-btn
               v-show="pageIndex >= 1"
               unelevated
-              label="戻る"
+              label="后退"
               color="toolbar-button"
               text-color="toolbar-button-display"
               class="text-no-wrap q-mr-md"
@@ -55,7 +55,7 @@
               v-if="pageIndex + 1 < showCharacterInfos.length"
               v-show="canNext"
               unelevated
-              label="次へ"
+              label="前进"
               color="toolbar-button"
               text-color="toolbar-button-display"
               class="text-no-wrap"
@@ -65,7 +65,7 @@
               v-else
               v-show="canNext"
               unelevated
-              label="完了"
+              label="完成"
               color="toolbar-button"
               text-color="toolbar-button-display"
               class="text-no-wrap"

@@ -19,7 +19,7 @@
             outline
             color="primary-light"
             icon="keyboard_arrow_left"
-            label="戻る"
+            label="后退"
             @click="selectCharacterInfIndex(undefined)"
           />
         </div>

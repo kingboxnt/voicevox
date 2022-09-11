@@ -10,8 +10,8 @@
       <q-header class="q-py-sm">
         <q-toolbar>
           <div class="column">
-            <q-toolbar-title class="text-display"
-              >利用規約に関するお知らせ</q-toolbar-title
+            <q-toolbar-title class="text-display lang=zh-hans"
+              >关于使用条款</q-toolbar-title
             >
           </div>
 
@@ -20,7 +20,7 @@
           <div class="row items-center no-wrap">
             <q-btn
               unelevated
-              label="同意せずに終了"
+              label="不同意并退出"
               color="toolbar-button"
               text-color="toolbar-button-display"
               class="text-no-wrap q-mr-md text-bold"
@@ -29,7 +29,7 @@
 
             <q-btn
               unelevated
-              label="同意して使用開始"
+              label="同意并开始使用"
               color="toolbar-button"
               text-color="toolbar-button-display"
               class="text-no-wrap text-bold"
@@ -42,12 +42,11 @@
       <q-page-container>
         <q-page>
           <p class="text-body1 q-mb-lg">
-            多くの人が安心して VOICEVOX
-            を使えるよう、利用規約への同意をお願いします。
+            为了能够正常启动 VOICEVOX、请同意以下使用条款。
           </p>
           <q-card flat bordered>
             <q-card-section>
-              <div class="text-h5">利用規約</div>
+              <div class="text-h5">使用条款</div>
             </q-card-section>
 
             <q-card-section>

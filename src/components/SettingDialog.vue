@@ -10,8 +10,8 @@
       <q-page-container class="root">
         <q-header class="q-pa-sm">
           <q-toolbar>
-            <q-toolbar-title class="text-display"
-              >設定 / オプション</q-toolbar-title
+            <q-toolbar-title class="text-display lang=zh-hans"
+              >设置 / 选项</q-toolbar-title
             >
             <q-space />
             <!-- close button -->
@@ -29,10 +29,10 @@
             <!-- Engine Mode Card -->
             <q-card flat class="setting-card">
               <q-card-actions>
-                <div class="text-h5">エンジン</div>
+                <div class="text-h5">引擎</div>
               </q-card-actions>
               <q-card-actions class="q-px-md q-py-sm bg-surface">
-                <div>エンジンモード</div>
+                <div>引擎模式</div>
                 <div>
                   <q-icon name="help_outline" size="sm" class="help-hover-icon">
                     <q-tooltip
@@ -41,10 +41,11 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
-                      GPU モードの利用には GPU が必要です。Linux は
-                      NVIDIA&trade; 製 GPU のみ対応しています。
-                    </q-tooltip>
+                      GPU 模式需要有 GPU 硬件设备。Linux 仅支持 NVIDIA&trade;
+                      GPU。</q-tooltip
+                    >
                   </q-icon>
                 </div>
                 <q-space />
@@ -70,7 +71,7 @@
                 <div class="text-h5">操作</div>
               </q-card-actions>
               <q-card-actions class="q-px-md q-py-sm bg-surface">
-                <div>パラメータの引き継ぎ</div>
+                <div>保留参数</div>
                 <div>
                   <q-icon name="help_outline" size="sm" class="help-hover-icon">
                     <q-tooltip
@@ -79,8 +80,9 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
-                      テキスト欄を追加する際、現在の話速等のパラメータを引き継ぎます
+                      添加一个文本字段时、将保留当前参数如语音速度等
                     </q-tooltip>
                   </q-icon>
                 </div>
@@ -92,7 +94,7 @@
                 </q-toggle>
               </q-card-actions>
               <q-card-actions class="q-px-md q-py-sm bg-surface">
-                <div>再生位置を追従</div>
+                <div>追踪播放位置</div>
                 <div>
                   <q-icon name="help_outline" size="sm" class="help-hover-icon">
                     <q-tooltip
@@ -101,8 +103,9 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
-                      再生位置を追従し、自動でスクロールするモードを選ぶことができます
+                      追踪播放位置、选择自动滚动模式
                     </q-tooltip>
                   </q-icon>
                 </div>
@@ -133,15 +136,16 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
-                      再生位置を追従し、自動でスクロールします。
-                      {{ `「${obj.label}」モードは${obj.desc}` }}
+                      追踪播放位置、自动滚动。
+                      {{ `「${obj.label}」模式  ${obj.desc}` }}
                     </q-tooltip>
                   </q-radio>
                 </div>
               </q-card-actions>
               <q-card-actions class="q-px-md q-py-sm bg-surface">
-                <div>テキスト分割の挙動</div>
+                <div>文本分割行为</div>
                 <div>
                   <q-icon name="help_outline" size="sm" class="help-hover-icon">
                     <q-tooltip
@@ -150,8 +154,9 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
-                      テキストを貼り付け時に行われる分割の挙動を変えます
+                      粘贴文本时更改分割行为
                     </q-tooltip>
                   </q-icon>
                 </div>
@@ -167,16 +172,16 @@
                   toggle-text-color="display-on-primary"
                   :options="[
                     {
-                      label: '句点と改行',
+                      label: '标点符号与换行符',
                       value: 'PERIOD_AND_NEW_LINE',
                       slot: 'splitTextPeriodAndNewLine',
                     },
                     {
-                      label: '改行',
+                      label: '换行符',
                       value: 'NEW_LINE',
                       slot: 'splitTextNewLine',
                     },
-                    { label: 'オフ', value: 'OFF', slot: 'splitTextOFF' },
+                    { label: '关闭', value: 'OFF', slot: 'splitTextOFF' },
                   ]"
                 >
                   <template v-slot:splitTextPeriodAndNewLine>
@@ -186,8 +191,9 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
-                      句点と改行を基にテキストを分割します。
+                      根据标点符号和换行符拆分文本。
                     </q-tooltip>
                   </template>
                   <template v-slot:splitTextNewLine>
@@ -197,8 +203,9 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
-                      改行のみを基にテキストを分割します。
+                      仅根据换行符分割文本。
                     </q-tooltip>
                   </template>
                   <template v-slot:splitTextOFF>
@@ -208,8 +215,9 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
-                      分割を行いません。
+                      不分割。
                     </q-tooltip>
                   </template>
                 </q-btn-toggle>
@@ -221,7 +229,7 @@
                 <div class="text-h5">保存</div>
               </q-card-actions>
               <q-card-actions class="q-px-md q-py-sm bg-surface">
-                <div>文字コード</div>
+                <div>字符编码</div>
                 <div>
                   <q-icon name="help_outline" size="sm" class="help-hover-icon">
                     <q-tooltip
@@ -230,8 +238,9 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
-                      文字コードを選ぶことができます
+                      选择一个字符编码
                     </q-tooltip>
                   </q-icon>
                 </div>
@@ -254,7 +263,7 @@
                 />
               </q-card-actions>
               <q-card-actions class="q-px-md q-py-none bg-surface">
-                <div>書き出し先を固定</div>
+                <div>锁定导出目标</div>
                 <div>
                   <q-icon name="help_outline" size="sm" class="help-hover-icon">
                     <q-tooltip
@@ -263,8 +272,9 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
-                      音声ファイルを設定したフォルダに書き出す
+                      语音文件导出到设定的文件夹中
                     </q-tooltip>
                   </q-icon>
                 </div>
@@ -273,7 +283,7 @@
                   dense
                   v-if="savingSetting.fixedExportEnabled"
                   maxheight="10px"
-                  label="書き出し先のフォルダ"
+                  label="导出文件夹"
                   hide-bottom-space
                   readonly
                   :model-value="savingSetting.fixedExportDir"
@@ -296,7 +306,7 @@
                       @click="openFileExplore"
                     >
                       <q-tooltip :delay="500" anchor="bottom left">
-                        フォルダ選択
+                        选择文件夹
                       </q-tooltip>
                     </q-btn>
                   </template>
@@ -315,7 +325,7 @@
               />
 
               <q-card-actions class="q-px-md q-py-sm bg-surface">
-                <div>書き出しファイル名パターン</div>
+                <div>导出文件名样式</div>
                 <div>
                   <q-icon name="help_outline" size="sm" class="help-hover-icon">
                     <q-tooltip
@@ -324,8 +334,9 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
-                      書き出すファイル名のパターンをカスタマイズする
+                      自定义导出文件名样式
                     </q-tooltip>
                   </q-icon>
                 </div>
@@ -334,7 +345,7 @@
                   {{ savingSetting.fileNamePattern }}
                 </div>
                 <q-btn
-                  label="編集"
+                  label="编辑"
                   unelevated
                   color="background"
                   text-color="display"
@@ -344,7 +355,7 @@
               </q-card-actions>
 
               <q-card-actions class="q-px-md q-py-none bg-surface">
-                <div>上書き防止</div>
+                <div>防止覆写</div>
                 <div>
                   <q-icon name="help_outline" size="sm" class="help-hover-icon">
                     <q-tooltip
@@ -353,8 +364,9 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
-                      上書きせずにファイルを連番で保存します
+                      文件保存为编号而不被覆写
                     </q-tooltip>
                   </q-icon>
                 </div>
@@ -368,7 +380,7 @@
                 </q-toggle>
               </q-card-actions>
               <q-card-actions class="q-px-md q-py-none bg-surface">
-                <div>txtファイルを書き出し</div>
+                <div>导出txt文件</div>
                 <div>
                   <q-icon name="help_outline" size="sm" class="help-hover-icon">
                     <q-tooltip
@@ -377,8 +389,9 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
-                      テキストをtxtファイルとして書き出します
+                      导出文本为txt文件
                     </q-tooltip>
                   </q-icon>
                 </div>
@@ -393,7 +406,7 @@
                 </q-toggle>
               </q-card-actions>
               <q-card-actions class="q-px-md q-py-none bg-surface">
-                <div>labファイルを書き出し</div>
+                <div>导出lab文件</div>
                 <div>
                   <q-icon name="help_outline" size="sm" class="help-hover-icon">
                     <q-tooltip
@@ -402,8 +415,9 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
-                      リップシンク用のlabファイルを書き出します
+                      导出lab文件同步口型
                     </q-tooltip>
                   </q-icon>
                 </div>
@@ -420,10 +434,10 @@
             <!-- Experimental Card -->
             <q-card flat class="setting-card">
               <q-card-actions>
-                <div class="text-h5">高度な設定</div>
+                <div class="text-h5">高级设置</div>
               </q-card-actions>
               <q-card-actions class="q-px-md q-py-none bg-surface">
-                <div>音声をステレオ化</div>
+                <div>双声道语音</div>
                 <div>
                   <q-icon name="help_outline" size="sm" class="help-hover-icon">
                     <q-tooltip
@@ -432,8 +446,9 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
-                      音声データをモノラルからステレオに変換してから再生・保存を行います
+                      将语音数据从单声道转换为双声道并执行播放/保存
                     </q-tooltip>
                   </q-icon>
                 </div>
@@ -447,7 +462,7 @@
                 </q-toggle>
               </q-card-actions>
               <q-card-actions class="q-px-md q-py-none bg-surface">
-                <div>再生デバイス</div>
+                <div>播放设备</div>
                 <div>
                   <q-icon name="help_outline" size="sm" class="help-hover-icon">
                     <q-tooltip
@@ -456,8 +471,9 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
-                      音声の再生デバイスを変更し再生を行います
+                      更改语音播放设备并执行播放
                     </q-tooltip>
                   </q-icon>
                 </div>
@@ -465,14 +481,14 @@
                 <q-select
                   dense
                   v-model="currentAudioOutputDeviceComputed"
-                  label="再生デバイス"
+                  label="播放设备"
                   :options="availableAudioOutputDevices"
                   class="col-7"
                 >
                 </q-select>
               </q-card-actions>
               <q-card-actions class="q-px-md q-py-none bg-surface">
-                <div>音声のサンプリングレート</div>
+                <div>语音采样率</div>
                 <div>
                   <q-icon name="help_outline" size="sm" class="help-hover-icon">
                     <q-tooltip
@@ -481,8 +497,9 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
-                      再生・保存時の音声のサンプリングレートを変更します（サンプリングレートを上げても音声の品質は上がりません。）
+                      播放/保存过程中更改语音采样率（提高采样率并不会提升语音质量。）
                     </q-tooltip>
                   </q-icon>
                 </div>
@@ -494,9 +511,7 @@
                   :options="[24000, 44100, 48000, 88200, 96000]"
                   :option-label="
                     (item) =>
-                      `${item / 1000} kHz${
-                        item === 24000 ? '(デフォルト)' : ''
-                      }`
+                      `${item / 1000} kHz${item === 24000 ? '(默认)' : ''}`
                   "
                   @update:model-value="
                     handleSavingSettingChange('outputSamplingRate', $event)
@@ -507,11 +522,11 @@
             </q-card>
             <q-card flat class="setting-card">
               <q-card-actions>
-                <div class="text-h5">実験的機能</div>
+                <div class="text-h5">实验性功能</div>
               </q-card-actions>
               <!-- 今後実験的機能を追加する場合はここに追加 -->
               <q-card-actions class="q-px-md q-py-sm bg-surface">
-                <div>テーマ</div>
+                <div>主题</div>
                 <q-icon name="help_outline" size="sm" class="help-hover-icon">
                   <q-tooltip
                     :delay="500"
@@ -519,8 +534,9 @@
                     self="center right"
                     transition-show="jump-left"
                     transition-hide="jump-right"
+                    class="text-h6"
                   >
-                    エディタの外観を変更します
+                    更改软件主题外观
                   </q-tooltip>
                 </q-icon>
                 <q-space />
@@ -536,7 +552,7 @@
                 />
               </q-card-actions>
               <q-card-actions class="q-px-md q-py-none bg-surface">
-                <div>プリセット機能</div>
+                <div>预设功能</div>
                 <div>
                   <q-icon name="help_outline" size="sm" class="help-hover-icon">
                     <q-tooltip
@@ -545,8 +561,9 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
-                      プリセット機能を有効にする
+                      启用预设功能
                     </q-tooltip>
                   </q-icon>
                 </div>
@@ -560,7 +577,7 @@
                 </q-toggle>
               </q-card-actions>
               <q-card-actions class="q-px-md q-py-none bg-surface">
-                <div>疑問文を自動調整</div>
+                <div>自动调整问句</div>
                 <div>
                   <q-icon name="help_outline" size="sm" class="help-hover-icon">
                     <q-tooltip
@@ -569,8 +586,9 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
-                      疑問文のとき語尾の音高を自動的に上げる
+                      自动提高结尾问句中的高音
                     </q-tooltip>
                   </q-icon>
                 </div>
@@ -589,10 +607,10 @@
             </q-card>
             <q-card flat class="setting-card">
               <q-card-actions>
-                <div class="text-h5">データ収集</div>
+                <div class="text-h5">数据收集</div>
               </q-card-actions>
               <q-card-actions class="q-px-md q-py-none bg-surface">
-                <div>ソフトウェア利用状況のデータ収集を許可する</div>
+                <div>允许收集软件使用过程中的数据</div>
                 <div>
                   <q-icon name="help_outline" size="sm" class="help-hover-icon">
                     <q-tooltip
@@ -601,8 +619,9 @@
                       self="center right"
                       transition-show="jump-left"
                       transition-hide="jump-right"
+                      class="text-h6"
                     >
-                      各UIの利用率などのデータを送信してVOICEVOXの改善に役立てます。テキストデータ・音声データは送信しません。
+                      上传各个GUI界面的使用率等数据用来改善VOICEVOX。不会上传文本数据/语音数据。
                     </q-tooltip>
                   </q-icon>
                 </div>
@@ -675,16 +694,16 @@ export default defineComponent({
       }
     > = {
       CONTINUOUSLY: {
-        label: "連続",
-        desc: "再生位置を真ん中に表示します。",
+        label: "连续",
+        desc: "播放位置在中间显示。",
       },
       PAGE: {
-        label: "ページめくり",
-        desc: "再生位置が表示範囲外にある場合にスクロールします。",
+        label: "翻页",
+        desc: "播放位置在显示范围之外时滚动播放。",
       },
       OFF: {
-        label: "オフ",
-        desc: "自動でスクロールしません。",
+        label: "关闭",
+        desc: "不自动滚动。",
       },
     };
 
@@ -763,9 +782,8 @@ export default defineComponent({
         }
 
         $q.dialog({
-          title: "ソフトウェア利用状況のデータ収集の無効化",
-          message:
-            "ソフトウェア利用状況のデータ収集を完全に無効にするには、VOICEVOXを再起動する必要があります",
+          title: "禁止软件收集数据",
+          message: "要完全禁止软件收集数据、必须重新启动VOICEVOX",
           ok: {
             flat: true,
             textColor: "display",
@@ -781,7 +799,7 @@ export default defineComponent({
         spinnerColor: "primary",
         spinnerSize: 50,
         boxClass: "bg-background text-display",
-        message: "起動モードを変更中です",
+        message: "更改启动模式",
       });
 
       await store.dispatch("CHANGE_USE_GPU", { useGpu });
@@ -820,18 +838,18 @@ export default defineComponent({
       };
       if (key === "outputSamplingRate" && data !== 24000) {
         $q.dialog({
-          title: "出力サンプリングレートを変更します",
+          title: "更改输出采样率",
           message:
-            "出力サンプリングレートを変更しても、音質は変化しません。また、音声の生成処理に若干時間がかかる場合があります。<br />変更しますか？",
+            "更改输出采样率并不会改变音质。另外、语音生成过程可能额外需要一些时间。<br />是否更改？",
           html: true,
           persistent: true,
           ok: {
-            label: "変更する",
+            label: "更改",
             flat: true,
             textColor: "display",
           },
           cancel: {
-            label: "変更しない",
+            label: "不更改",
             flat: true,
             textColor: "display",
           },
@@ -843,7 +861,7 @@ export default defineComponent({
 
     const openFileExplore = async () => {
       const path = await window.electron.showOpenDirectoryDialog({
-        title: "書き出し先のフォルダを選択",
+        title: "选择导出文件夹",
       });
       if (path) {
         store.dispatch("SET_SAVING_SETTING", {
