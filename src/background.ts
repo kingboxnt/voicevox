@@ -538,7 +538,6 @@ async function runEngine(engineId: string) {
     store.set("useGpu", hasGpu);
 
     dialog.showMessageBox(win, {
-      message: `语音合成引擎${
       message: `语音合成引擎${hasGpu ? "GPU" : "CPU"}模式已启动`,
       detail: "引擎启动模式可以从菜单栏的「引擎」菜单中更改。",
       title: "引擎启动模式",
